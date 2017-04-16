@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Usus</string>
+    <string name="email_hint">E-mail</string>
+    <string name="pass_hint">Пароль</string>
+    <string name="btn_login">Войти</string>
+</resources>
