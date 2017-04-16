@@ -1,5 +1,6 @@
 package com.example.shokedbrain.usus;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
