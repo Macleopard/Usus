@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="emptyPass_error">Введите пароль</string>
+    <string name="emptyEmail_error">Введите email</string>
+    <string name="app_name">Usus</string>
+    <string name="btn_login">Войти</string>
+    <string name="email_hint">Email</string>
+    <string name="pass_hint">Пароль</string>
+</resources>
