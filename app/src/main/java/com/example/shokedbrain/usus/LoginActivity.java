@@ -88,12 +88,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         Button btn_log = (Button) findViewById(R.id.btn_login);
-        try {
-            View.OnClickListener oclBtnLog = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String log = email.getText().toString();
-                    String password = pass.getText().toString();
+
+        View.OnClickListener oclBtnLog = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String log = email.getText().toString();
+                String password = pass.getText().toString();
+                try {
                     mAuth.signInWithEmailAndPassword(log, password)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -107,14 +108,16 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-
+                } catch (IllegalArgumentException e) {
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.empty_error), Toast.LENGTH_LONG);
+                    toast.show();
                 }
-            };
-            btn_log.setOnClickListener(oclBtnLog);
-        } catch (IllegalArgumentException e) {
-            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.empty_error), Toast.LENGTH_LONG);
-            toast.show();
-        }
+
+
+            }
+        };
+        btn_log.setOnClickListener(oclBtnLog);
+
     }
 
     @Override
