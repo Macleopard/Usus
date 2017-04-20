@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundLogin"
     tools:context="com.example.shokedbrain.usus.LoginActivity">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:paddingTop="56dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
@@ -40,7 +42,8 @@
                 android:id="@+id/pass_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/pass_hint" />
+                android:hint="@string/pass_hint"
+                android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/btn_login"

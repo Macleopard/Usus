@@ -5,4 +5,6 @@
     <string name="btn_login">Login</string>
     <string name="emptyPass_error">Enter password</string>
     <string name="emptyEmail_error">Enter email</string>
+    <string name="wrongFormat_email">Wrong format of email</string>
+    <string name="empty_error">Please enter your credentials</string>
 </resources>
