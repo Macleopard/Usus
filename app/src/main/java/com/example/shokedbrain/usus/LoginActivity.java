@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast toast = Toast.makeText(getApplicationContext(), "Logged!", Toast.LENGTH_SHORT);
                                         toast.show();
                                     } else {
-                                        Toast toast = Toast.makeText(getApplicationContext(), "No!", Toast.LENGTH_SHORT);
+                                        Toast toast = Toast.makeText(getApplicationContext(), "Incorrect!", Toast.LENGTH_SHORT);
                                         toast.show();
                                     }
                                 }
