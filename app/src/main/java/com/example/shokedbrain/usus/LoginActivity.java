@@ -1,7 +1,6 @@
 package com.example.shokedbrain.usus;
 
-import android.app.Activity;
-import android.nfc.Tag;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +10,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.textservice.TextInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,26 +25,17 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "MyActivity";
     private EditText email, pass;
-
+    private Intent signUp, main;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        signUp = new Intent(this, SignUpActivity.class);
+        main = new Intent(this, MainActivity.class);
         email = (EditText) findViewById(R.id.email_input);
         pass = (EditText) findViewById(R.id.pass_input);
-        mAuth = FirebaseAuth.getInstance(); // Initialization instance
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Log.d(TAG, "onAuthStateChanged:signed_in");
-                } else {
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-            }
-        };
+
+        initFirebase();
 
         email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -89,35 +77,45 @@ public class LoginActivity extends AppCompatActivity {
         });
         Button btn_log = (Button) findViewById(R.id.btn_login);
 
-        View.OnClickListener oclBtnLog = new View.OnClickListener() {
+        btn_log.setOnClickListener(v -> login());
+
+    }
+
+    public void login() {
+        String log = email.getText().toString();
+        String password = pass.getText().toString();
+        try {
+            mAuth.signInWithEmailAndPassword(log, password)
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                startActivity(main);
+                            } else {
+                                Toast toast = Toast.makeText(getApplicationContext(), "Incorrect!", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+                        }
+                    });
+        } catch (IllegalArgumentException e) {
+            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.empty_error), Toast.LENGTH_LONG);
+            toast.show();
+        }
+    }
+
+    public void initFirebase() {
+        mAuth = FirebaseAuth.getInstance(); // Initialization instance
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onClick(View v) {
-                String log = email.getText().toString();
-                String password = pass.getText().toString();
-                try {
-                    mAuth.signInWithEmailAndPassword(log, password)
-                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast toast = Toast.makeText(getApplicationContext(), "Logged!", Toast.LENGTH_SHORT);
-                                        toast.show();
-                                    } else {
-                                        Toast toast = Toast.makeText(getApplicationContext(), "Incorrect!", Toast.LENGTH_SHORT);
-                                        toast.show();
-                                    }
-                                }
-                            });
-                } catch (IllegalArgumentException e) {
-                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.empty_error), Toast.LENGTH_LONG);
-                    toast.show();
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Log.d(TAG, "onAuthStateChanged:signed_in");
+                } else {
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-
-
             }
         };
-        btn_log.setOnClickListener(oclBtnLog);
-
     }
 
     @Override
