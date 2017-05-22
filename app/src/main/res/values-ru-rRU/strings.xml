@@ -8,4 +8,5 @@
     <string name="pass_hint">Пароль</string>
     <string name="wrongFormat_email">Неправильный формат почты</string>
     <string name="empty_error">Введите свои данные</string>
+    <string name="btn_send">Отправить</string>
 </resources>

@@ -7,5 +7,6 @@
     <string name="emptyEmail_error">Enter email</string>
     <string name="wrongFormat_email">Wrong format of email</string>
     <string name="empty_error">Please enter your credentials</string>
+    <string name="btn_send">Send</string>
 
 </resources>
