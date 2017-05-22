@@ -2,9 +2,6 @@ package com.example.shokedbrain.usus;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -18,20 +15,20 @@ import java.util.List;
 
 public class MessageAdapter extends ArrayAdapter<Message> {
 
-    public MessageAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Message> objects) {
+    public MessageAdapter(Context context, int resource, List<Message> objects) {
         super(context, resource, objects);
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.item_message, parent, false);
         }
-        TextView msgTextView = (TextView) convertView.findViewById(R.id.msgEditText);
+        TextView msgTextView = (TextView) convertView.findViewById(R.id.textView);
         Message message = getItem(position);
+        String txt = message.getText();
+        msgTextView.setText(txt);
 
-        msgTextView.setText(message.getText());
 
         return convertView;
     }

@@ -9,10 +9,12 @@
 
     <ListView
         android:id="@+id/msgListView"
+        style="@style/Widget.AppCompat.ListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/linearLayout"
         android:divider="@android:drawable/divider_horizontal_textfield"
+        android:footerDividersEnabled="true"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll" />
 
