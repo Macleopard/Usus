@@ -90,7 +90,9 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                main.putExtra("username", email.getText().toString());
                                 startActivity(main);
+
                             } else {
                                 Toast toast = Toast.makeText(getApplicationContext(), "Incorrect!", Toast.LENGTH_SHORT);
                                 toast.show();
