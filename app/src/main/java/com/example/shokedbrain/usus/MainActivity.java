@@ -1,31 +1,24 @@
 package com.example.shokedbrain.usus;
 
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
+import android.text.format.DateFormat;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static android.R.id.empty;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     // БД Firebase
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference msgDatabaseReference;
-    private static final String TAG = "MyActivity";
-    private ChildEventListener childEventListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,16 +45,27 @@ public class MainActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         msgDatabaseReference = firebaseDatabase.getReference().child("messages");
 
-        mAdapter = new FirebaseRecyclerAdapter<Message, MessageHolder>(Message.class, android.R.layout.two_line_list_item, MessageHolder.class, msgDatabaseReference) {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        mAdapter = new FirebaseRecyclerAdapter<Message, MessageHolder>(Message.class, R.layout.item_message, MessageHolder.class, msgDatabaseReference) {
             @Override
             protected void populateViewHolder(MessageHolder messageHolder, Message message, int position) {
-                messageHolder.setUsr(message.getUser());
+                if (message.getUser().indexOf(getIntent().getStringExtra("username")) != -1)
+                    messageHolder.setUsr(message.getUser(), Color.parseColor("#e6005c"));
+                else
+                    messageHolder.setUsr(message.getUser(), Color.parseColor("#000000"));
                 messageHolder.setMsg(message.getText());
             }
         };
+        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                mLayoutManager.smoothScrollToPosition(msgListView, null, mAdapter.getItemCount());
+            }
+        });
         msgListView.setAdapter(mAdapter);
         msgSendBtn.setOnClickListener(v -> {
-            Message message = new Message(getIntent().getStringExtra("username"), msgEditText.getText().toString());
+            Message message = new Message(getIntent().getStringExtra("username") + " " + df.format(calendar.getTime()), msgEditText.getText().toString());
             msgDatabaseReference.push().setValue(message);
             msgEditText.setText("");
         });
