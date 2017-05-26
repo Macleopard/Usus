@@ -9,4 +9,8 @@
     <string name="wrongFormat_email">Неправильный формат почты</string>
     <string name="empty_error">Введите свои данные</string>
     <string name="btn_send">Отправить</string>
+    <string name="enter_email">Введите email</string>
+    <string name="enter_Pass">Введите пароль</string>
+    <string name="repeat_pass">Повторите пароль</string>
+    <string name="reg_button">Зарегистрироваться</string>
 </resources>

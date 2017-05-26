@@ -20,6 +20,9 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView msgListView;
@@ -31,29 +34,28 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference msgDatabaseReference;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
         msgSendBtn = (Button) findViewById(R.id.sendButton);
         msgEditText = (EditText) findViewById(R.id.msgEditText);
         msgListView = (RecyclerView) findViewById(R.id.msgListView);
         mLayoutManager = new LinearLayoutManager(this);
         msgListView.setLayoutManager(mLayoutManager);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        msgDatabaseReference = firebaseDatabase.getReference().child("messages");
+
+        initFirebase();
 
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm");
         mAdapter = new FirebaseRecyclerAdapter<Message, MessageHolder>(Message.class, R.layout.item_message, MessageHolder.class, msgDatabaseReference) {
             @Override
             protected void populateViewHolder(MessageHolder messageHolder, Message message, int position) {
                 if (message.getUser().indexOf(getIntent().getStringExtra("username")) != -1)
                     messageHolder.setUsr(message.getUser(), Color.parseColor("#e6005c"));
                 else
-                    messageHolder.setUsr(message.getUser(), Color.parseColor("#000000"));
+                    messageHolder.setUsr(message.getUser());
                 messageHolder.setMsg(message.getText());
             }
         };
@@ -90,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    protected void initFirebase() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        msgDatabaseReference = firebaseDatabase.getReference().child("messages");
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

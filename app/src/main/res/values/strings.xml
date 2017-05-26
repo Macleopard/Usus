@@ -8,5 +8,9 @@
     <string name="wrongFormat_email">Wrong format of email</string>
     <string name="empty_error">Please enter your credentials</string>
     <string name="btn_send">Send</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_Pass">Enter pass</string>
+    <string name="repeat_pass">Repeat password</string>
+    <string name="reg_button">Join us</string>
 
 </resources>
