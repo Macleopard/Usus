@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@android:style/Theme.Black.NoTitleBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     tools:context="com.example.shokedbrain.usus.SignUpActivity">
 
 
@@ -31,9 +31,11 @@
             android:layout_marginTop="8dp">
 
             <EditText
+                android:id="@+id/email_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_email" />
+                android:hint="@string/enter_email"
+                android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -43,9 +45,11 @@
             android:layout_marginTop="8dp">
 
             <EditText
+                android:id="@+id/pass_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_Pass" />
+                android:hint="@string/enter_Pass"
+                android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -55,9 +59,11 @@
             android:layout_marginTop="8dp">
 
             <EditText
+                android:id="@+id/repeatpsw_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/repeat_pass" />
+                android:hint="@string/repeat_pass"
+                android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
         <Button

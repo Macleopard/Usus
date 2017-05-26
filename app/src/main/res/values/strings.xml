@@ -13,5 +13,7 @@
     <string name="repeat_pass">Repeat password</string>
     <string name="reg_button">Join us</string>
     <string name="loading_msg">Loading</string>
+    <string name="password_nomatch">Password don\'t match</string>
+    <string name="signUp">Sign Up</string>
 
 </resources>
