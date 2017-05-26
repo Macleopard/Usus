@@ -2,6 +2,7 @@ package com.example.shokedbrain.usus;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -30,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         signUp = new Intent(this, SignUpActivity.class);
         main = new Intent(this, MainActivity.class);
         email = (EditText) findViewById(R.id.email_input);

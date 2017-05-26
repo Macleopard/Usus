@@ -2,6 +2,7 @@ package com.example.shokedbrain.usus;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -27,6 +28,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         login = new Intent(this, LoginActivity.class);
         initFirebase();
         email = (EditText) findViewById(R.id.email_field);
