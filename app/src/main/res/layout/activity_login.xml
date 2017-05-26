@@ -69,6 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_weight="0.69"
-            android:text="@string/btn_login" />
+            android:text="@string/reg_button" />
     </LinearLayout>
 </ScrollView>

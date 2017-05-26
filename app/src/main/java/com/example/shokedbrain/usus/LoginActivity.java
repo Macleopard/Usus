@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "MyActivity";
+    private Button btn_log, btn_reg;
     private EditText email, pass;
     private Intent signUp, main;
     @Override
@@ -75,9 +76,14 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        Button btn_log = (Button) findViewById(R.id.btn_login);
+        btn_log = (Button) findViewById(R.id.btn_login);
+        btn_reg = (Button) findViewById(R.id.btn_reg);
 
         btn_log.setOnClickListener(v -> login());
+        btn_reg.setOnClickListener(v -> {
+            startActivity(signUp);
+        });
+
 
     }
 

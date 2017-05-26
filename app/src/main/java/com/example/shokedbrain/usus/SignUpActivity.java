@@ -43,10 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!isValidEmail(email.getText().toString()))
-                    pass.setError(getString(R.string.wrongFormat_email));
-
-                if (TextUtils.isEmpty(email.getText().toString()) || email.getText().toString().length() < 6)
-                    pass.setError(getString(R.string.emptyEmail_error));
+                    email.setError(getString(R.string.wrongFormat_email));
 
             }
 
@@ -65,8 +62,6 @@ public class SignUpActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (TextUtils.isEmpty(pass.getText().toString()) || pass.getText().toString().length() < 6)
                     pass.setError(getString(R.string.emptyPass_error));
-                if (!pass.getText().toString().equals(repeatPass.getText().toString()))
-                    pass.setError(getString(R.string.password_nomatch));
 
             }
 
