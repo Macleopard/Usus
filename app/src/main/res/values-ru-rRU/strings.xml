@@ -13,4 +13,5 @@
     <string name="enter_Pass">Введите пароль</string>
     <string name="repeat_pass">Повторите пароль</string>
     <string name="reg_button">Зарегистрироваться</string>
+    <string name="loading_msg">Загрузка</string>
 </resources>

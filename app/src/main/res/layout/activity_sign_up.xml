@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     tools:context="com.example.shokedbrain.usus.SignUpActivity">
 
@@ -14,6 +15,14 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:paddingTop="54dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            app:srcCompat="@drawable/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.69"
+            android:scaleType="fitCenter" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -55,6 +64,7 @@
             android:id="@+id/regButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/reg_button" />
     </LinearLayout>
 </ScrollView>
