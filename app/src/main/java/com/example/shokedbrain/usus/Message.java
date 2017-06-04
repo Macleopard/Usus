@@ -5,14 +5,23 @@ package com.example.shokedbrain.usus;
  */
 
 public class Message {
-    private String user, text;
+    private String user, text, time;
 
     public Message() {
     }
 
-    public Message(String user, String text) {
+    public Message(String user, String text, String time) {
         this.user = user;
         this.text = text;
+        this.time = time;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getText() {

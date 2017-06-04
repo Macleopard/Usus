@@ -17,6 +17,7 @@
         android:scrollbars="vertical"
         android:visibility="visible"
         android.support.v7.widget.recyclerview:stackFromEnd="true"
+        android.support.v7.widget.recyclerview:reverseLayout="true"
         tools:listitem="@android:layout/activity_list_item" />
 
     <LinearLayout
@@ -34,12 +35,11 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 
-        <Button
+        <ImageButton
             android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:enabled="false"
-            android:text="@string/btn_send" />
+            android:layout_gravity="top"
+            android.support.v7.widget.recyclerview:srcCompat="@android:drawable/ic_menu_send" />
     </LinearLayout>
 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView msgListView;
     private EditText msgEditText;
-    private Button msgSendBtn;
+    private ImageButton msgSendBtn;
     private RecyclerView.LayoutManager mLayoutManager;
     private FirebaseRecyclerAdapter mAdapter;
     // БД Firebase
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        msgSendBtn = (Button) findViewById(R.id.sendButton);
+        msgSendBtn = (ImageButton) findViewById(R.id.sendButton);
         msgEditText = (EditText) findViewById(R.id.msgEditText);
         msgListView = (RecyclerView) findViewById(R.id.msgListView);
         mLayoutManager = new LinearLayoutManager(this);
@@ -50,15 +51,19 @@ public class MainActivity extends AppCompatActivity {
         initFirebase();
 
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm");
         mAdapter = new FirebaseRecyclerAdapter<Message, MessageHolder>(Message.class, R.layout.item_message, MessageHolder.class, msgDatabaseReference) {
             @Override
             protected void populateViewHolder(MessageHolder messageHolder, Message message, int position) {
-                if (message.getUser().indexOf(getIntent().getStringExtra("username")) != -1)
+                if (message.getUser().indexOf(getIntent().getStringExtra("username")) != -1) {
                     messageHolder.setUsr(message.getUser(), Color.parseColor("#e6005c"));
-                else
+                    messageHolder.rightSide();
+                } else {
                     messageHolder.setUsr(message.getUser());
+                    messageHolder.leftSide();
+                }
                 messageHolder.setMsg(message.getText());
+                messageHolder.setTime(df.format(calendar.getTime()));
             }
         };
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
         msgListView.setAdapter(mAdapter);
         msgSendBtn.setOnClickListener(v -> {
-            Message message = new Message(getIntent().getStringExtra("username") + " " + df.format(calendar.getTime()), msgEditText.getText().toString());
+            Message message = new Message(getIntent().getStringExtra("username"), msgEditText.getText().toString(), df.format(calendar.getTime()));
             msgDatabaseReference.push().setValue(message);
             msgEditText.setText("");
         });

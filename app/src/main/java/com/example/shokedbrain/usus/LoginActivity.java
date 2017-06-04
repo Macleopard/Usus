@@ -100,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 main.putExtra("username", email.getText().toString());
                                 startActivity(main);
+                                pass.setText("");
 
                             } else {
                                 Toast toast = Toast.makeText(getApplicationContext(), "Incorrect!", Toast.LENGTH_SHORT);

@@ -2,6 +2,7 @@ package com.example.shokedbrain.usus;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,11 +13,13 @@ import android.widget.TextView;
 public class MessageHolder extends RecyclerView.ViewHolder {
     private final TextView mMsg;
     private final TextView mUsr;
+    private final TextView mTime;
 
     public MessageHolder(View view) {
         super(view);
-        mUsr = (TextView) view.findViewById(R.id.username);
-        mMsg = (TextView) view.findViewById(R.id.message);
+        mUsr = (TextView) view.findViewById(R.id.username_field);
+        mMsg = (TextView) view.findViewById(R.id.message_field);
+        mTime = (TextView) view.findViewById(R.id.time_field);
     }
 
     public void setUsr(String text, int color) {
@@ -31,5 +34,21 @@ public class MessageHolder extends RecyclerView.ViewHolder {
 
     public void setMsg(String text) {
         mMsg.setText(text);
+    }
+
+    public void setTime(String text) {
+        mTime.setText(text);
+    }
+
+    public void rightSide() {
+        mUsr.setGravity(Gravity.RIGHT);
+        mMsg.setGravity(Gravity.RIGHT);
+        mTime.setGravity(Gravity.RIGHT);
+    }
+
+    public void leftSide() {
+        mUsr.setGravity(Gravity.LEFT);
+        mMsg.setGravity(Gravity.LEFT);
+        mTime.setGravity(Gravity.LEFT);
     }
 }
