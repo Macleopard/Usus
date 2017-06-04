@@ -2,6 +2,7 @@ package com.example.shokedbrain.usus;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,16 +40,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         msgSendBtn = (Button) findViewById(R.id.sendButton);
         msgEditText = (EditText) findViewById(R.id.msgEditText);
         msgListView = (RecyclerView) findViewById(R.id.msgListView);
         mLayoutManager = new LinearLayoutManager(this);
         msgListView.setLayoutManager(mLayoutManager);
-
         initFirebase();
 
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         mAdapter = new FirebaseRecyclerAdapter<Message, MessageHolder>(Message.class, R.layout.item_message, MessageHolder.class, msgDatabaseReference) {
             @Override
             protected void populateViewHolder(MessageHolder messageHolder, Message message, int position) {

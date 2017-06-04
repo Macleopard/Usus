@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:android.support.v7.widget.recyclerview="http://schemas.android.com/apk/res-auto"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
@@ -15,6 +16,7 @@
         android:layout_above="@+id/linearLayout"
         android:scrollbars="vertical"
         android:visibility="visible"
+        android.support.v7.widget.recyclerview:stackFromEnd="true"
         tools:listitem="@android:layout/activity_list_item" />
 
     <LinearLayout
