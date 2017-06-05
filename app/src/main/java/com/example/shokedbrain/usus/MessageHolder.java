@@ -22,33 +22,33 @@ public class MessageHolder extends RecyclerView.ViewHolder {
         mTime = (TextView) view.findViewById(R.id.time_field);
     }
 
-    public void setUsr(String text, int color) {
+    void setUsr(String text, int color) {
         mUsr.setTextColor(color);
         mUsr.setText(text);
     }
 
-    public void setUsr(String text) {
+    void setUsr(String text) {
         mUsr.setTextColor(Color.parseColor("#000000"));
         mUsr.setText(text);
     }
 
-    public void setMsg(String text) {
+    void setMsg(String text) {
         mMsg.setText(text);
     }
 
-    public void setTime(String text) {
+    void setTime(String text) {
         mTime.setText(text);
     }
 
     public void rightSide() {
-        mUsr.setGravity(Gravity.RIGHT);
-        mMsg.setGravity(Gravity.RIGHT);
-        mTime.setGravity(Gravity.RIGHT);
+        mUsr.setGravity(Gravity.END);
+        mMsg.setGravity(Gravity.END);
+        mTime.setGravity(Gravity.END);
     }
 
     public void leftSide() {
-        mUsr.setGravity(Gravity.LEFT);
-        mMsg.setGravity(Gravity.LEFT);
-        mTime.setGravity(Gravity.LEFT);
+        mUsr.setGravity(Gravity.START);
+        mMsg.setGravity(Gravity.START);
+        mTime.setGravity(Gravity.START);
     }
 }

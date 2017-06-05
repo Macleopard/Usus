@@ -20,23 +20,32 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "MyActivity";
-    private Button btn_log, btn_reg;
-    private EditText email, pass;
+    @BindView(R.id.btn_login)
+    Button btn_log;
+    @BindView(R.id.btn_reg)
+    Button btn_reg;
+    @BindView(R.id.email_input)
+    EditText email;
+    @BindView(R.id.pass_input)
+    EditText pass;
     private Intent signUp, main;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         signUp = new Intent(this, SignUpActivity.class);
         main = new Intent(this, MainActivity.class);
-        email = (EditText) findViewById(R.id.email_input);
-        pass = (EditText) findViewById(R.id.pass_input);
+
 
         initFirebase();
 
@@ -78,8 +87,8 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        btn_log = (Button) findViewById(R.id.btn_login);
-        btn_reg = (Button) findViewById(R.id.btn_reg);
+//        btn_log = (Button) findViewById(R.id.btn_login);
+//        btn_reg = (Button) findViewById(R.id.btn_reg);
 
         btn_log.setOnClickListener(v -> login());
         btn_reg.setOnClickListener(v -> {

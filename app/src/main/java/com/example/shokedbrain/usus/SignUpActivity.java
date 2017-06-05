@@ -19,9 +19,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class SignUpActivity extends AppCompatActivity {
-    private EditText email, pass, repeatPass;
-    private Button regButton;
+    @BindView(R.id.email_field)
+    EditText email;
+    @BindView(R.id.pass_field)
+    EditText pass;
+    @BindView(R.id.repeatpsw_field)
+    EditText repeatPass;
+    @BindView(R.id.regButton)
+    Button regButton;
     private FirebaseAuth mAuth;
     private Intent login;
     @Override
@@ -30,12 +39,9 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        ButterKnife.bind(this);
         login = new Intent(this, LoginActivity.class);
         initFirebase();
-        email = (EditText) findViewById(R.id.email_field);
-        pass = (EditText) findViewById(R.id.pass_field);
-        repeatPass = (EditText) findViewById(R.id.repeatpsw_field);
-        regButton = (Button) findViewById(R.id.regButton);
 
         email.addTextChangedListener(new TextWatcher() {
             @Override

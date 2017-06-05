@@ -26,10 +26,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-
-    private RecyclerView msgListView;
-    private EditText msgEditText;
-    private ImageButton msgSendBtn;
+    @BindView(R.id.msgListView)
+    RecyclerView msgListView;
+    @BindView(R.id.msgEditText)
+    EditText msgEditText;
+    @BindView(R.id.sendButton)
+    ImageButton msgSendBtn;
     private RecyclerView.LayoutManager mLayoutManager;
     private FirebaseRecyclerAdapter mAdapter;
     // БД Firebase
@@ -43,29 +45,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        msgSendBtn = (ImageButton) findViewById(R.id.sendButton);
-        msgEditText = (EditText) findViewById(R.id.msgEditText);
-        msgListView = (RecyclerView) findViewById(R.id.msgListView);
         mLayoutManager = new LinearLayoutManager(this);
         msgListView.setLayoutManager(mLayoutManager);
         initFirebase();
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm");
-        mAdapter = new FirebaseRecyclerAdapter<Message, MessageHolder>(Message.class, R.layout.item_message, MessageHolder.class, msgDatabaseReference) {
-            @Override
-            protected void populateViewHolder(MessageHolder messageHolder, Message message, int position) {
-                if (message.getUser().indexOf(getIntent().getStringExtra("username")) != -1) {
-                    messageHolder.setUsr(message.getUser(), Color.parseColor("#e6005c"));
-                    messageHolder.rightSide();
-                } else {
-                    messageHolder.setUsr(message.getUser());
-                    messageHolder.leftSide();
-                }
-                messageHolder.setMsg(message.getText());
-                messageHolder.setTime(df.format(calendar.getTime()));
-            }
-        };
+
+        mAdapter = new MessageAdapter(Message.class, R.layout.item_message, MessageHolder.class, msgDatabaseReference, MainActivity.this);
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
