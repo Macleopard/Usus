@@ -60,7 +60,7 @@ public class RoomActivity extends AppCompatActivity {
         });
         msgListView.setAdapter(mAdapter);
         msgSendBtn.setOnClickListener(v -> {
-            Message message = new Message(getIntent().getStringExtra("username"), msgEditText.getText().toString(), df.format(calendar.getTime()));
+            Message message = new Message(getIntent().getStringExtra("user"), msgEditText.getText().toString(), df.format(calendar.getTime()));
             msgDatabaseReference.push().setValue(message);
             msgEditText.setText("");
         });
@@ -87,7 +87,7 @@ public class RoomActivity extends AppCompatActivity {
 
     protected void initFirebase() {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        msgDatabaseReference = firebaseDatabase.getReference().child("messages");
+        msgDatabaseReference = firebaseDatabase.getReference().child("radio");
     }
 
     @Override

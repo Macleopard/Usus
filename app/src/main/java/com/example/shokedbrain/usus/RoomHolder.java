@@ -10,9 +10,10 @@ import android.widget.TextView;
 
 public class RoomHolder extends RecyclerView.ViewHolder {
     private final TextView roomName;
-
+    View mView;
     public RoomHolder(View itemView) {
         super(itemView);
+        mView = itemView;
         roomName = (TextView) itemView.findViewById(R.id.room_field);
     }
 
