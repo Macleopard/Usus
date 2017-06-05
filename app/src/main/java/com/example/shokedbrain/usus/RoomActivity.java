@@ -47,11 +47,11 @@ public class RoomActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         msgListView.setLayoutManager(mLayoutManager);
         initFirebase();
-
+        String user = getIntent().getStringExtra("user");
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm");
 
-        mAdapter = new MessageAdapter(Message.class, R.layout.item_message, MessageHolder.class, msgDatabaseReference, RoomActivity.this);
+        mAdapter = new MessageAdapter(Message.class, R.layout.item_message, MessageHolder.class, msgDatabaseReference, user);
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {

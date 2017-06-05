@@ -15,18 +15,17 @@ import java.util.Calendar;
 public class MessageAdapter extends FirebaseRecyclerAdapter<Message, MessageHolder> {
     private Calendar calendar = Calendar.getInstance();
     private SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm");
-    private Context context;
+    private String user;
 
     // Стандартный конструктор, в который передаем контекст для проверки имени пользователя
 
-    public MessageAdapter(Class<Message> message, int layout, Class<MessageHolder> messageHolder, Query ref, Context context) {
+    public MessageAdapter(Class<Message> message, int layout, Class<MessageHolder> messageHolder, Query ref, String user) {
         super(message, layout, messageHolder, ref);
-        this.context = context;
+        this.user = user;
     }
 
     protected void populateViewHolder(MessageHolder messageHolder, Message message, int position) {
-        Intent intent = ((Activity) context).getIntent();
-        if (message.getUser().contains(intent.getStringExtra("username")))
+        if (message.getUser().contains(user))
             messageHolder.setUsr(message.getUser(), Color.parseColor("#e6005c"));
         else
             messageHolder.setUsr(message.getUser());
