@@ -87,7 +87,7 @@ public class RoomActivity extends AppCompatActivity {
 
     protected void initFirebase() {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        msgDatabaseReference = firebaseDatabase.getReference().child("radio");
+        msgDatabaseReference = firebaseDatabase.getReference().child(getIntent().getStringExtra("room_name"));
     }
 
     @Override
