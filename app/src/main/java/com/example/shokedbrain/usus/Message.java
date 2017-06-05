@@ -4,7 +4,7 @@ package com.example.shokedbrain.usus;
  * Created by shokedbrain on 22.05.17.
  */
 
-public class Message {
+class Message {
     private String user, text, time;
 
     public Message() {

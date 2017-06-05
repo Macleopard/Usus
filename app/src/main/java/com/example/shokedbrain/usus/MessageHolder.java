@@ -40,15 +40,4 @@ public class MessageHolder extends RecyclerView.ViewHolder {
         mTime.setText(text);
     }
 
-    public void rightSide() {
-        mUsr.setGravity(Gravity.END);
-        mMsg.setGravity(Gravity.END);
-        mTime.setGravity(Gravity.END);
-    }
-
-    public void leftSide() {
-        mUsr.setGravity(Gravity.START);
-        mMsg.setGravity(Gravity.START);
-        mTime.setGravity(Gravity.START);
-    }
 }
