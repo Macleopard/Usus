@@ -16,4 +16,5 @@
     <string name="loading_msg">Загрузка</string>
     <string name="password_nomatch">Пароли не совпадают</string>
     <string name="signUp">Зарегистрироваться</string>
+    <string name="addRoom">Добавить</string>
 </resources>

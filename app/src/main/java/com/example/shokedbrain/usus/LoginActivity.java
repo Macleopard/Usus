@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         signUp = new Intent(this, SignUpActivity.class);
-        main = new Intent(this, RoomActivity.class);
+        main = new Intent(this, MenuActivity.class);
 
 
         initFirebase();

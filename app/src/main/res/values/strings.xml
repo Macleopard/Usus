@@ -15,5 +15,6 @@
     <string name="loading_msg">Loading</string>
     <string name="password_nomatch">Password don\'t match</string>
     <string name="signUp">Sign Up</string>
+    <string name="addRoom">Add</string>
 
 </resources>
