@@ -17,4 +17,5 @@
     <string name="password_nomatch">Пароли не совпадают</string>
     <string name="signUp">Зарегистрироваться</string>
     <string name="addRoom">Добавить</string>
+    <string name="choose_Room">Выберите комнату</string>
 </resources>

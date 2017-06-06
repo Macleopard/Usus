@@ -16,5 +16,6 @@
     <string name="password_nomatch">Password don\'t match</string>
     <string name="signUp">Sign Up</string>
     <string name="addRoom">Add</string>
+    <string name="choose_Room">Choose room</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.shokedbrain.usus;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.List;
 import java.util.Map;
@@ -37,12 +39,15 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         ButterKnife.bind(this);
         ActionBar actionBar = getSupportActionBar();
+        Toast toast = Toast.makeText(getApplicationContext(), R.string.choose_Room, Toast.LENGTH_SHORT);
+        toast.show();
         try {
             actionBar.hide();
         } catch (NullPointerException e) {
         }
         mLayoutManager = new LinearLayoutManager(this);
         roomList.setLayoutManager(mLayoutManager);
+        roomList.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this).build());
         initFirebase();
         msgDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
